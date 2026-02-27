@@ -1,10 +1,10 @@
 package usuarios;
 
 public abstract class Usuario {
-    protected String id; // Nuevo atributo según diagrama
+    protected String id;
     protected String nombre;
-    protected String email; // Nuevo atributo según diagrama
-    protected String username; // Se mantiene para no romper el login actual
+    protected String email;
+    protected String username;
     private String password;
 
     // Constructor actualizado con los nuevos campos

@@ -11,7 +11,7 @@ public class LibroFisico extends Libro {
     // Polimorfismo: Sobrescribimos mostrarInfo()
     @Override
     public void mostrarInfo() {
-        System.out.println("[LIBRO FÍSICO] ID: " + id + " | Título: " + titulo + " | Autor: " + autor
+        System.out.println("[LIBRO FÍSICO] ID: " + idLibro + " | Título: " + titulo + " | Autor: " + autor
                 + " | Ubicación: " + ubicacion);
     }
 }

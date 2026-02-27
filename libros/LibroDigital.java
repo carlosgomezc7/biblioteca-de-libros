@@ -15,7 +15,7 @@ public class LibroDigital extends Libro {
     // Polimorfismo: Sobrescribimos mostrarInfo()
     @Override
     public void mostrarInfo() {
-        System.out.println("[LIBRO DIGITAL] ID: " + id + " | Título: " + titulo + " | Autor: " + autor
+        System.out.println("[LIBRO DIGITAL] ID: " + idLibro + " | Título: " + titulo + " | Autor: " + autor
                 + " | Formato: " + formato);
     }
 }

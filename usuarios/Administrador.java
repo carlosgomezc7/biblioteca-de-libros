@@ -22,7 +22,7 @@ public class Administrador extends Usuario {
         // ... (Se mantiene igual tu código original)
     }
 
-    // --- SUB-MENÚ DEL ADMINISTRADOR MODIFICADO ---
+    // SUB-MENÚ DEL ADMINISTRADOR
     public static void menuAdministrador(Scanner scanner, ArrayList<Libro> inventario) {
         int opcion;
         do {

@@ -1,14 +1,14 @@
 package libros;
 
 public class Libro {
-    protected String id; // El diagrama lo llama 'id' en lugar de 'idLibro'
+    protected String idLibro; // El diagrama lo llama 'id' en lugar de 'idLibro'
     protected String titulo;
     protected String autor; // Nuevo atributo
     protected boolean disponible;
 
     // Constructor actualizado
-    public Libro(String id, String titulo, String autor) {
-        this.id = id;
+    public Libro(String idLibro, String titulo, String autor) {
+        this.idLibro = idLibro;
         this.titulo = titulo;
         this.autor = autor;
         this.disponible = true;
@@ -31,9 +31,8 @@ public class Libro {
         this.disponible = estado;
     }
 
-    // Nuevo método principal para aplicar el Polimorfismo
     public void mostrarInfo() {
-        System.out.println("ID: " + id + " | Título: " + titulo + " | Autor: " + autor + " | Estado: "
+        System.out.println("ID: " + idLibro + " | Título: " + titulo + " | Autor: " + autor + " | Estado: "
                 + (disponible ? "Disponible" : "Prestado"));
     }
 }

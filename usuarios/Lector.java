@@ -21,16 +21,16 @@ public class Lector extends Usuario {
     }
 
     public void descargar(LibroDigital libroDigital) {
-        System.out.println("⬇️ Descargando libro digital: " + libroDigital.getTitulo() + " en formato "
+        System.out.println("Descargando libro digital: " + libroDigital.getTitulo() + " en formato "
                 + libroDigital.getFormato());
     }
 
     public void mostrarMisLibros() {
-        // ... (Se mantiene igual tu código original)
+
     }
 
     public void devolverLibro(Prestamo prestamo) {
-        // ... (Se mantiene igual tu código original)
+
     }
 
     public static void menuLector(Scanner scanner, Lector lector, ArrayList<Libro> inventario) {
@@ -46,7 +46,7 @@ public class Lector extends Usuario {
 
             if (opcion == 1) {
                 System.out.println("\n--- Catálogo Disponible ---");
-                for (int i = 0; i < inventario.size(); i++) {
+                for (int i = 1; i < inventario.size(); i++) {
                     if (inventario.get(i).isDisponible()) {
                         System.out.print(i + ". ");
                         inventario.get(i).mostrarInfo(); // Polimorfismo: muestra si es físico o digital
