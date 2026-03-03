@@ -1,7 +1,7 @@
-package usuarios; //EMPAQUETA USUARIOS Y SUS RELACIONADOS
+package src.classes.usuarios; //EMPAQUETA USUARIOS Y SUS RELACIONADOS
 
-import libros.*; //SE IMPORTA TODA LA CARPETA DE LIBROS
-import operaciones.*; //SE IMPORTA TODA LA CARPETA OPERACIONES
+import src.classes.libros.*;
+import src.classes.operaciones.*;
 
 import java.util.ArrayList;
 import java.util.List;

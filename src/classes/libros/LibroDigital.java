@@ -1,4 +1,4 @@
-package libros;
+package src.classes.libros;
 
 public class LibroDigital extends Libro {
     private String formato; // Ejemplo: PDF, EPUB

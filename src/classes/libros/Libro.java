@@ -1,12 +1,12 @@
-package libros;
+package src.classes.libros;
 
 public class Libro {
-    protected String idLibro; // El diagrama lo llama 'id' en lugar de 'idLibro'
+    protected String idLibro;
     protected String titulo;
-    protected String autor; // Nuevo atributo
+    protected String autor;
     protected boolean disponible;
 
-    // Constructor actualizado
+    // Constructor
     public Libro(String idLibro, String titulo, String autor) {
         this.idLibro = idLibro;
         this.titulo = titulo;
@@ -14,7 +14,6 @@ public class Libro {
         this.disponible = true;
     }
 
-    // Sobrecarga para no romper tu Index.java
     public Libro(String id, String titulo) {
         this(id, titulo, "Autor Desconocido");
     }

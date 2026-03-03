@@ -1,7 +1,7 @@
-package libros;
+package src.classes.libros;
 
 public class LibroFisico extends Libro {
-    private String ubicacion; // Ejemplo: Pasillo 3, Estante A
+    private String ubicacion;
 
     public LibroFisico(String id, String titulo, String autor, String ubicacion) {
         super(id, titulo, autor);

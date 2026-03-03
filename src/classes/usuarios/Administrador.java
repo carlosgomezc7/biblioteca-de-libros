@@ -1,10 +1,10 @@
-package usuarios;
-
-import libros.*;
+package src.classes.usuarios;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import src.classes.libros.*;
 
 public class Administrador extends Usuario {
 
@@ -19,7 +19,7 @@ public class Administrador extends Usuario {
     }
 
     public void auditarInventario(List<Libro> inventario) {
-        // ... (Se mantiene igual tu código original)
+
     }
 
     // SUB-MENÚ DEL ADMINISTRADOR
@@ -32,7 +32,7 @@ public class Administrador extends Usuario {
             System.out.println("3. Cerrar sesión");
             System.out.print("Elige una opción: ");
             opcion = scanner.nextInt();
-            scanner.nextLine(); // Limpiar buffer
+            scanner.nextLine();
 
             if (opcion == 1) {
                 System.out.print("Ingresa el ID (ej. 003): ");
@@ -44,18 +44,18 @@ public class Administrador extends Usuario {
 
                 System.out.print("¿El libro es Digital (1) o Físico (2)? ");
                 int tipo = scanner.nextInt();
-                scanner.nextLine(); // Limpiar buffer
+                scanner.nextLine();
 
                 if (tipo == 1) {
                     System.out.print("Ingresa el Formato (ej. PDF, EPUB): ");
                     String formato = scanner.nextLine();
                     inventario.add(new LibroDigital(id, titulo, autor, formato));
-                    System.out.println("✅ ¡Libro Digital registrado con éxito!");
+                    System.out.println("¡Libro Digital registrado con éxito!");
                 } else if (tipo == 2) {
                     System.out.print("Ingresa la Ubicación (ej. Estante A): ");
                     String ubicacion = scanner.nextLine();
                     inventario.add(new LibroFisico(id, titulo, autor, ubicacion));
-                    System.out.println("✅ ¡Libro Físico registrado con éxito!");
+                    System.out.println("¡Libro Físico registrado con éxito!");
                 } else {
                     System.out.println("❌ Opción inválida. No se registró el libro.");
                 }

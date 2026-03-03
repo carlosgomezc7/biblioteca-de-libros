@@ -1,8 +1,9 @@
-package operaciones;
+package src.classes.operaciones;
 
-import libros.Libro;
-import usuarios.Lector;
 import java.time.LocalDate;
+
+import src.classes.libros.Libro;
+import src.classes.usuarios.Lector;
 
 public class Prestamo {
     // Encapsulamiento: Protegemos los datos de la transacción
@@ -22,7 +23,7 @@ public class Prestamo {
             this.fechaFin = this.fechaInicio.plusDays(diasPrestamo); // Sumamos los días
             this.estado = true;
 
-            // ¡Interacción clave! El préstamo cambia el estado del libro
+            // El préstamo cambia el estado del libro
             this.libro.cambiarEstado(false);
             // Se agrega el getter de nombre y el get de titulo ya que estos atributos se
             // encuentran en protect

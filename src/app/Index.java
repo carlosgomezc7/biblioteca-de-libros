@@ -1,7 +1,9 @@
-import libros.*; //llamado de todas las clases que se encuentran en el paquete libros
-import usuarios.*; //llamado de todas las clases que se encuentran en el paquete usuarios
+package src.app;
+
 import java.util.ArrayList; //importe de liberia para utilizar arrays
 import java.util.Scanner;
+import src.classes.libros.*;
+import src.classes.usuarios.*;
 
 public class Index {
     public static void main(String[] args) {

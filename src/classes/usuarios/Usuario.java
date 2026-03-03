@@ -1,4 +1,4 @@
-package usuarios;
+package src.classes.usuarios;
 
 public abstract class Usuario {
     protected String id;
