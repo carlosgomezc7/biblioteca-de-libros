@@ -62,6 +62,7 @@ public class Index {
                 }
             }
 
+            // ! EXCEPCION
             // 4. DIRECCIONAMIENTO SEGÚN EL ROL
             if (usuarioAutenticado != null) {
                 System.out.println("\n ¡Bienvenido, " + usuarioAutenticado.getNombre() + "!");
