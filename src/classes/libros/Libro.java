@@ -22,6 +22,10 @@ public class Libro {
         return titulo;
     }
 
+    public String getIdLibro() {
+        return idLibro;
+    }
+
     public boolean isDisponible() {
         return disponible;
     }

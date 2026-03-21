@@ -5,7 +5,7 @@ public class LibroDigital extends Libro {
 
     public LibroDigital(String id, String titulo, String autor, String formato) {
         super(id, titulo, autor); // Llama al constructor del padre
-        this.formato = formato;
+
     }
 
     public String getFormato() {

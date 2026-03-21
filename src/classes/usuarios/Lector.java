@@ -1,4 +1,4 @@
-package src.classes.usuarios; //EMPAQUETA USUARIOS Y SUS RELACIONADOS
+package src.classes.usuarios;
 
 import src.classes.libros.*;
 import src.classes.operaciones.*;
@@ -25,16 +25,28 @@ public class Lector extends Usuario {
                 + libroDigital.getFormato());
     }
 
+    // [3er Avance - Proyecto POO] Mostrar los libros actuales del lector
     public void mostrarMisLibros() {
-
+        System.out.println("\n--- Mis Libros Prestados ---");
+        if (this.misPrestamos.isEmpty()) {
+            System.out.println("No tienes libros prestados actualmente.");
+        } else {
+            for (int i = 0; i < this.misPrestamos.size(); i++) {
+                Prestamo p = this.misPrestamos.get(i);
+                System.out.println(
+                        (i + 1) + ". " + p.getLibro().getTitulo() + " | Fecha límite de entrega: " + p.getfechaFin());
+            }
+        }
     }
 
+    // [3er Avance - Proyecto POO] Lógica de devolución
     public void devolverLibro(Prestamo prestamo) {
-
+        prestamo.devolverLibro(); // Llama a la lógica de la transacción en la clase Prestamo
+        this.misPrestamos.remove(prestamo); // Libera el registro del lector
     }
 
     public static void menuLector(Scanner scanner, Lector lector, ArrayList<Libro> inventario) {
-        int opcion;
+        int opcion = 0;
         do {
             System.out.println("\n--- PANEL DE LECTOR ---");
             System.out.println("1. Ver catálogo y pedir libro");
@@ -42,39 +54,63 @@ public class Lector extends Usuario {
             System.out.println("3. Devolver un libro");
             System.out.println("4. Cerrar sesión");
             System.out.print("Elige una opción: ");
-            opcion = scanner.nextInt();
+
+            // [3er Avance] Implementación de Excepciones para evitar el colapso
+            try {
+                opcion = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println(" Error: Por favor, ingresa un número válido.");
+                continue;
+            }
 
             if (opcion == 1) {
                 System.out.println("\n--- Catálogo Disponible ---");
-                for (int i = 1; i < inventario.size(); i++) {
+                // Corrección: Iniciar en 0 para no saltarse el primer libro del arreglo
+                for (int i = 0; i < inventario.size(); i++) {
                     if (inventario.get(i).isDisponible()) {
                         System.out.print(i + ". ");
-                        inventario.get(i).mostrarInfo(); // Polimorfismo: muestra si es físico o digital
+                        inventario.get(i).mostrarInfo();
                     }
                 }
 
                 System.out.print("Ingresa el número del libro a pedir (o -1 para cancelar): ");
-                int seleccion = scanner.nextInt();
+                try {
+                    int seleccion = Integer.parseInt(scanner.nextLine());
 
-                if (seleccion >= 0 && seleccion < inventario.size() && inventario.get(seleccion).isDisponible()) {
-                    Libro libroSeleccionado = inventario.get(seleccion);
-                    Prestamo nuevoPrestamo = new Prestamo(libroSeleccionado, lector, 7);
-                    lector.agregarPrestamo(nuevoPrestamo);
-                    System.out.println("✅ ¡Libro asignado a tu cuenta!");
+                    if (seleccion >= 0 && seleccion < inventario.size() && inventario.get(seleccion).isDisponible()) {
+                        Libro libroSeleccionado = inventario.get(seleccion);
+                        Prestamo nuevoPrestamo = new Prestamo(libroSeleccionado, lector, 7);
+                        lector.agregarPrestamo(nuevoPrestamo);
+                        System.out.println("✅ ¡Libro asignado a tu cuenta!");
 
-                    // Si el libro es digital, se llama al método de descarga automáticamente
-                    if (libroSeleccionado instanceof LibroDigital) {
-                        lector.descargar((LibroDigital) libroSeleccionado);
+                        if (libroSeleccionado instanceof LibroDigital) {
+                            lector.descargar((LibroDigital) libroSeleccionado);
+                        }
+                    } else if (seleccion != -1) {
+                        System.out.println(" Selección inválida o libro no disponible.");
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println(" Error: Entrada inválida. Debes ingresar un número.");
+                }
+            } else if (opcion == 2) {
+                lector.mostrarMisLibros();
+            } else if (opcion == 3) {
+                // [3er Avance] Interacción para seleccionar y devolver un libro
+                lector.mostrarMisLibros();
+                if (!lector.misPrestamos.isEmpty()) {
+                    System.out.print("Ingresa el número del libro que deseas devolver (o 0 para cancelar): ");
+                    try {
+                        int seleccionDev = Integer.parseInt(scanner.nextLine());
+                        if (seleccionDev > 0 && seleccionDev <= lector.misPrestamos.size()) {
+                            Prestamo prestamoADevolver = lector.misPrestamos.get(seleccionDev - 1);
+                            lector.devolverLibro(prestamoADevolver);
+                        } else if (seleccionDev != 0) {
+                            System.out.println(" Selección inválida.");
+                        }
+                    } catch (NumberFormatException e) {
+                        System.out.println(" Error: Entrada inválida.");
                     }
                 }
-            }
-
-            else if (opcion == 2) {
-                lector.mostrarMisLibros();
-            }
-
-            else if (opcion == 3) {
-                // ... (Se mantiene igual tu código original)
             }
         } while (opcion != 4);
         System.out.println("Cerrando sesión de lector...");

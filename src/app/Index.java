@@ -1,6 +1,6 @@
 package src.app;
 
-import java.util.ArrayList; //importe de liberia para utilizar arrays
+import java.util.ArrayList;
 import java.util.Scanner;
 import src.classes.libros.*;
 import src.classes.usuarios.*;
@@ -10,29 +10,25 @@ public class Index {
 
         Scanner scanner = new Scanner(System.in);
 
-        // 1. Vectores principales, simulacion de bd
         ArrayList<Libro> inventario = new ArrayList<>();
-        // Ahora instanciamos libros usando las clases hijas, AQUI APLICAMOS HERENCIA
         inventario
                 .add(new LibroFisico("001", "Cien Años de Soledad", "Gabriel García Márquez", "Pasillo 3 - Estante B"));
         inventario.add(new LibroDigital("002", "El Programador Pragmático", "Andy Hunt", "PDF"));
 
-        // VECTOR DE USUARIOS EN EL CUAL ESTOS USUARIOS QUEDAN FIJOS POR SEGURIDAD
         ArrayList<Usuario> usuariosRegistrados = new ArrayList<>();
 
-        // AQUI PODEMOS AGREGAR TODOS LOS USUARIOS QUE NECESITEMOS
         usuariosRegistrados.add(new Administrador("Carlos", "admin", "admin"));
+        usuariosRegistrados.add(new Librero("Luis", "lib", "lib")); // <-- NUEVO USUARIO LIBRERO AVANCE4
         usuariosRegistrados.add(new Lector("Carla", "dev", "dev"));
-        usuariosRegistrados.add(new Lector("Aaron", "dev", "dev"));
+        usuariosRegistrados.add(new Lector("Aaron", "lector2", "123"));
 
-        // INICIAR SISTEMA
         boolean sistemaEncendido = true;
+
         System.out.println("=========================================");
         System.out.println("   SISTEMA BIBLIOTECARIO - LOGIN         ");
+        System.out.println("   (3er Avance - Proyecto POO)           ");
         System.out.println("=========================================");
 
-        // 2. BUCLE PRINCIPAL DEL SISTEMA
-        //
         while (sistemaEncendido) {
             System.out.println("\n--- INICIAR SESIÓN ---");
             System.out.print("Usuario: ");
@@ -47,32 +43,29 @@ public class Index {
             System.out.print("Contraseña: ");
             String inputPass = scanner.nextLine();
 
-            // 3. PROCESO DE VALIDACIÓN
             Usuario usuarioAutenticado = null;
-            // AQUI UTILIZAMOS UN FOR PARA REALIZAR LA COMPARACION DE LO QUE INGRESA EL
-            // USUARIO CON LOS REGISTRADOS
+
             for (Usuario u : usuariosRegistrados) {
                 if (u.getUsername().equals(inputUser)) {
                     if (u.login(inputPass)) {
                         usuarioAutenticado = u;
                     } else {
-                        System.out.println("Error: Contraseña incorrecta.");
+                        System.out.println(" Error: Contraseña incorrecta.");
                     }
                     break;
                 }
             }
 
-            // ! EXCEPCION
-            // 4. DIRECCIONAMIENTO SEGÚN EL ROL
             if (usuarioAutenticado != null) {
                 System.out.println("\n ¡Bienvenido, " + usuarioAutenticado.getNombre() + "!");
-                usuarioAutenticado.mostrarPanel(); // Polimorfismo
+                usuarioAutenticado.mostrarPanel();
 
+                // Redirección dependiendo del Rol (Polimorfismo / InstanceOf)
                 if (usuarioAutenticado instanceof Administrador) {
-                    // Llamamos al método estático de la clase Administrador
-                    Administrador.menuAdministrador(scanner, inventario);
+                    Administrador.menuAdministrador(scanner, (Administrador) usuarioAutenticado, inventario);
+                } else if (usuarioAutenticado instanceof Librero) { // <-- REDIRECCIÓN AL NUEVO ROL
+                    Librero.menuLibrero(scanner, (Librero) usuarioAutenticado, inventario);
                 } else if (usuarioAutenticado instanceof Lector) {
-                    // Llamamos al método estático de la clase Lector
                     Lector.menuLector(scanner, (Lector) usuarioAutenticado, inventario);
                 }
             } else if (!inputUser.equalsIgnoreCase("salir")) {
