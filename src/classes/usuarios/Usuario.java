@@ -1,5 +1,9 @@
 package src.classes.usuarios;
-
+//CREAR EN CONSOLA EDITAR NOMBRES DE ROLES Y PERFILES
+//INICIAR SESION O CREAR CUENTA CON UN ARRAYLIST DINAMICO
+//VALIDACION CORREO EN TIEMPO REAL A TRAVES DE LA WEB AL FINAL
+//PDF LO ABRA Y DESCARGA O SI DA TIEMPO EN UNA NUBE EN TIEMPO REAL
+//INTERFAZ GRAFICA NIVEL EXPERT
 public abstract class Usuario {
     protected String id;
     protected String nombre;
@@ -39,4 +43,7 @@ public abstract class Usuario {
     }
 
     public abstract void mostrarPanel();
+
+    
+    
 }

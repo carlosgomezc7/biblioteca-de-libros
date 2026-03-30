@@ -1,5 +1,5 @@
 package src.classes.libros;
-
+// DEJAR 100% DIGITAL Y ELIMINAR LA LIBRERIA FISICA
 public class Libro {
     protected String idLibro;
     protected String titulo;
@@ -21,7 +21,7 @@ public class Libro {
     public String getTitulo() {
         return titulo;
     }
-
+// ID SI SE PUEDA DUPLICAR PERO EL NOMBRE
     public String getIdLibro() {
         return idLibro;
     }

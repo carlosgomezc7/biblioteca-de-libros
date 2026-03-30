@@ -7,6 +7,7 @@ import java.util.Scanner;
 import src.classes.libros.*;
 
 public class Administrador extends Usuario {
+    
 
     public Administrador(String nombre, String username, String password) {
         super(nombre, username, password);
@@ -48,11 +49,18 @@ public class Administrador extends Usuario {
                 System.out.println(" Error: Ingresa un número válido.");
                 continue;
             }
+            finally {
+            //clear
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
+        }
+
 
             if (opcion == 1) {
                 System.out.println("\n--- Inventario ---");
                 for (Libro l : inventario) {
                     l.mostrarInfo();
+                    System.out.flush();
                 }
             } else if (opcion == 2) {
                 admin.auditarInventario(inventario);
@@ -63,6 +71,6 @@ public class Administrador extends Usuario {
 
     @Override
     public void mostrarPanel() {
-        System.out.println("Cargando panel de Administración con privilegios elevados para: " + this.nombre + "...");
+        System.out.println("Cargando panel de Administración...");
     }
 }

@@ -22,15 +22,19 @@ public class Librero extends Usuario {
 
             try {
                 opcion = Integer.parseInt(scanner.nextLine());
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
             } catch (NumberFormatException e) {
                 System.out.println("Error: Ingresa un número válido.");
                 continue;
             }
-
+             /*agregar un contador fijo autoincremental para no teclear ids manualmente y disminuir el error humano  */
             if (opcion == 1) {
-                System.out.print("Ingresa el ID");
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
+                System.out.print("Ingresa el ID (Eje. 001): ");
                 String id = scanner.nextLine();
-
+                try{
                 // Validación de ID duplicado
                 boolean idExiste = false;
                 for (Libro l : inventario) {
@@ -42,12 +46,30 @@ public class Librero extends Usuario {
 
                 if (idExiste) {
                     System.out.println("Error: Ya existe un libro registrado con el ID '" + id);
-                    continue;
+             
                 }
-
+      
+                }
+                catch(NumberFormatException e){
+                    System.out.println("Error: "+ e);
+                    
+                }
+                finally {
+                        //clear
+                        System.out.print("\033[H\033[2J");
+                        System.out.flush();
+                        System.out.println("Error: Ya existe un libro registrado con el ID '" + id);
+                    }
+                    /*manda a nombrar el libro pero al ingresar el 003 cierra sesion o cuano se ingresa una id existente 
+                     marca error pero aun asi pide ingresar el nombre del libro lo que deberia de ser que muestra que 
+                    id ya existe cuando deberia regresar a poner el id (pendiente por revisar) */
+        
+            
                 System.out.print("Ingresa el Título del libro: ");
+                
                 String titulo = scanner.nextLine();
                 System.out.print("Ingresa el Autor: ");
+                
                 String autor = scanner.nextLine();
 
                 System.out.print("¿El libro es Digital (1) o Físico (2)? ");
@@ -69,22 +91,32 @@ public class Librero extends Usuario {
                     } else {
                         System.out.println("Opción inválida. No se registró el libro.");
                     }
-                } catch (NumberFormatException e) {
+                } 
+                catch (NumberFormatException e) {
                     System.out.println("Error: Debes ingresar 1 o 2 numéricamente.");
                 }
+                finally {
+                        //clear
+                        System.out.print("\033[H\033[2J");
+                        System.out.flush();
+                    }
 
             } else if (opcion == 2) {
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
                 System.out.println("\n--- Inventario ---");
                 for (Libro l : inventario) {
                     l.mostrarInfo();
                 }
             }
         } while (opcion != 3);
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
         System.out.println("Cerrando sesión de librero...");
     }
 
     @Override
     public void mostrarPanel() {
-        System.out.println("Cargando panel de Librero (Gestión de Catálogo) para: " + this.nombre + "...");
+        System.out.println("Cargando panel de Librero...");
     }
 }
