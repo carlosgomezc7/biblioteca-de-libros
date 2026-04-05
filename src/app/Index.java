@@ -7,12 +7,13 @@ import src.classes.usuarios.*;
 
 public class Index {
     public static void main(String[] args) {
+            // clear
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
 
         Scanner scanner = new Scanner(System.in);
-
         ArrayList<Libro> inventario = new ArrayList<>();
-        inventario
-                .add(new LibroFisico("001", "Cien Años de Soledad", "Gabriel García Márquez", "Pasillo 3 - Estante B"));
+        inventario.add(new LibroFisico("001", "Cien Años de Soledad", "Gabriel García Márquez", "Pasillo 3 - Estante B"));
         inventario.add(new LibroDigital("002", "El Programador Pragmático", "Andy Hunt", "PDF"));
 
         ArrayList<Usuario> usuariosRegistrados = new ArrayList<>();
@@ -20,13 +21,12 @@ public class Index {
         usuariosRegistrados.add(new Administrador("Carlos", "admin", "admin"));
         usuariosRegistrados.add(new Librero("Luis", "lib", "lib")); // <-- NUEVO USUARIO LIBRERO AVANCE4
         usuariosRegistrados.add(new Lector("Carla", "dev", "dev"));
-        usuariosRegistrados.add(new Lector("Aaron", "lector2", "123"));
+        usuariosRegistrados.add(new Lector("Aaron", "lector", "lector"));
 
         boolean sistemaEncendido = true;
 
         System.out.println("=========================================");
         System.out.println("   SISTEMA BIBLIOTECARIO - LOGIN         ");
-        System.out.println("   (3er Avance - Proyecto POO)           ");
         System.out.println("=========================================");
 
         while (sistemaEncendido) {
@@ -55,6 +55,8 @@ public class Index {
                     break;
                 }
             }
+            System.out.print("\033[H\033[2J");
+            System.out.flush();
 
             if (usuarioAutenticado != null) {
                 System.out.println("\n ¡Bienvenido, " + usuarioAutenticado.getNombre() + "!");

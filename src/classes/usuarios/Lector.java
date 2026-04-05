@@ -58,10 +58,16 @@ public class Lector extends Usuario {
             // [3er Avance] Implementación de Excepciones para evitar el colapso
             try {
                 opcion = Integer.parseInt(scanner.nextLine());
-            } catch (NumberFormatException e) {
+            } 
+            catch (NumberFormatException e) {
                 System.out.println(" Error: Por favor, ingresa un número válido.");
                 continue;
             }
+            finally {
+            //clear
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
+                }
 
             if (opcion == 1) {
                 System.out.println("\n--- Catálogo Disponible ---");
@@ -73,7 +79,9 @@ public class Lector extends Usuario {
                     }
                 }
 
-                System.out.print("Ingresa el número del libro a pedir (o -1 para cancelar): ");
+                System.out.print("Ingresa el número del libro a pedir (o 0 para cancelar): ");
+                
+                
                 try {
                     int seleccion = Integer.parseInt(scanner.nextLine());
 
@@ -81,7 +89,8 @@ public class Lector extends Usuario {
                         Libro libroSeleccionado = inventario.get(seleccion);
                         Prestamo nuevoPrestamo = new Prestamo(libroSeleccionado, lector, 7);
                         lector.agregarPrestamo(nuevoPrestamo);
-                        System.out.println("✅ ¡Libro asignado a tu cuenta!");
+                        
+                        System.out.println(" ¡Libro asignado a tu cuenta!");
 
                         if (libroSeleccionado instanceof LibroDigital) {
                             lector.descargar((LibroDigital) libroSeleccionado);
@@ -89,9 +98,15 @@ public class Lector extends Usuario {
                     } else if (seleccion != -1) {
                         System.out.println(" Selección inválida o libro no disponible.");
                     }
-                } catch (NumberFormatException e) {
+                } 
+                catch (NumberFormatException e) {
                     System.out.println(" Error: Entrada inválida. Debes ingresar un número.");
                 }
+                /*finally {
+            //clear
+                    System.out.print("\033[H\033[2J");
+                    System.out.flush();
+                }/* */
             } else if (opcion == 2) {
                 lector.mostrarMisLibros();
             } else if (opcion == 3) {
@@ -105,10 +120,22 @@ public class Lector extends Usuario {
                             Prestamo prestamoADevolver = lector.misPrestamos.get(seleccionDev - 1);
                             lector.devolverLibro(prestamoADevolver);
                         } else if (seleccionDev != 0) {
+                            
+            //clear
+                    System.out.print("\033[H\033[2J");
+                    System.out.flush();
+                
                             System.out.println(" Selección inválida.");
+                            
                         }
-                    } catch (NumberFormatException e) {
+                    } 
+                    catch (NumberFormatException e) {
                         System.out.println(" Error: Entrada inválida.");
+                    }
+                    finally {
+                        //clear
+                        System.out.print("\033[H\033[2J");
+                        System.out.flush();
                     }
                 }
             }
@@ -121,3 +148,4 @@ public class Lector extends Usuario {
         System.out.println("Cargando panel de Lector: " + this.nombre + "...");
     }
 }
+
