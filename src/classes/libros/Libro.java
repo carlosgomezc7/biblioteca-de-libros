@@ -1,27 +1,34 @@
 package src.classes.libros;
+
 // DEJAR 100% DIGITAL Y ELIMINAR LA LIBRERIA FISICA
 public class Libro {
-    protected String idLibro;
+    // Variable estática para llevar el control del autoincremento
+    private static int contadorId = 1;
+
+    // Se cambia a private
+    private String idLibro;
     protected String titulo;
     protected String autor;
     protected boolean disponible;
 
-    // Constructor
-    public Libro(String idLibro, String titulo, String autor) {
-        this.idLibro = idLibro;
+    // Constructor actualizado (ya no recibe idLibro como parámetro)
+    public Libro(String titulo, String autor) {
+        // Se asigna el valor actual del contador y luego se incrementa
+        this.idLibro = String.valueOf(contadorId++);
         this.titulo = titulo;
         this.autor = autor;
         this.disponible = true;
     }
 
-    public Libro(String id, String titulo) {
-        this(id, titulo, "Autor Desconocido");
+    // Constructor sobrecargado actualizado
+    public Libro(String titulo) {
+        this(titulo, "Autor Desconocido");
     }
 
     public String getTitulo() {
         return titulo;
     }
-// ID SI SE PUEDA DUPLICAR PERO EL NOMBRE
+
     public String getIdLibro() {
         return idLibro;
     }

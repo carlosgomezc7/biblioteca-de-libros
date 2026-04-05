@@ -4,21 +4,26 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import src.classes.libros.*;
 import src.classes.usuarios.*;
+import src.tools.limpiar; // <-- Se importa la clase limpiar
 
 public class Index {
     public static void main(String[] args) {
         // clear
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
+        limpiar.limpiarConsola(); // <-- Reemplazo 1
 
         Scanner scanner = new Scanner(System.in);
         ArrayList<Libro> inventario = new ArrayList<>();
-        inventario.add(new LibroDigital("002", "El Programador Pragmático", "Andy Hunt", "PDF"));
+
+        // Mantenemos el inventario 100% digital y sin ID manual
+        inventario.add(null); // se agrego el primer add inventario en null para conenzar en 1 el registro asi
+                              // como la impresion
+        inventario.add(new LibroDigital("Cien Años de Soledad", "Gabriel García Márquez", "EPUB"));
+        inventario.add(new LibroDigital("El Programador Pragmático", "Andy Hunt", "PDF"));
 
         ArrayList<Usuario> usuariosRegistrados = new ArrayList<>();
 
         usuariosRegistrados.add(new Administrador("Carlos", "admin", "admin"));
-        usuariosRegistrados.add(new Librero("Luis", "lib", "lib")); // <-- NUEVO USUARIO LIBRERO AVANCE4
+        usuariosRegistrados.add(new Librero("Luis", "lib", "lib"));
         usuariosRegistrados.add(new Lector("Carla", "dev", "dev"));
         usuariosRegistrados.add(new Lector("Aaron", "lector", "lector"));
 
@@ -54,8 +59,8 @@ public class Index {
                     break;
                 }
             }
-            System.out.print("\033[H\033[2J");
-            System.out.flush();
+
+            limpiar.limpiarConsola(); // <-- Reemplazo 2
 
             if (usuarioAutenticado != null) {
                 System.out.println("\n ¡Bienvenido, " + usuarioAutenticado.getNombre() + "!");
@@ -64,7 +69,7 @@ public class Index {
                 // Redirección dependiendo del Rol (Polimorfismo / InstanceOf)
                 if (usuarioAutenticado instanceof Administrador) {
                     Administrador.menuAdministrador(scanner, (Administrador) usuarioAutenticado, inventario);
-                } else if (usuarioAutenticado instanceof Librero) { // <-- REDIRECCIÓN AL NUEVO ROL
+                } else if (usuarioAutenticado instanceof Librero) {
                     Librero.menuLibrero(scanner, (Librero) usuarioAutenticado, inventario);
                 } else if (usuarioAutenticado instanceof Lector) {
                     Lector.menuLector(scanner, (Lector) usuarioAutenticado, inventario);

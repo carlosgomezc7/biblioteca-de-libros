@@ -69,8 +69,10 @@ public class Lector extends Usuario {
 
             if (opcion == 1) {
                 System.out.println("\n--- Catálogo Disponible ---");
-                // Corrección: Iniciar en 0 para no saltarse el primer libro del arreglo
-                for (int i = 0; i < inventario.size(); i++) {
+                // Corrección: Iniciar en 1 y en el index se puso el primer campo del array list
+                // en null
+
+                for (int i = 1; i < inventario.size(); i++) {
                     if (inventario.get(i).isDisponible()) {
                         System.out.print(i + ". ");
                         inventario.get(i).mostrarInfo();
@@ -79,7 +81,7 @@ public class Lector extends Usuario {
                 System.out.print("Ingresa el número del libro a pedir (o 0 para cancelar): ");
                 try {
                     int seleccion = Integer.parseInt(scanner.nextLine());
-
+                    // AJUSTAR DEJAR EN CERO PARA CANCELAR
                     if (seleccion >= 0 && seleccion < inventario.size() && inventario.get(seleccion).isDisponible()) {
                         Libro libroSeleccionado = inventario.get(seleccion);
                         Prestamo nuevoPrestamo = new Prestamo(libroSeleccionado, lector, 7);
@@ -112,7 +114,7 @@ public class Lector extends Usuario {
                             Prestamo prestamoADevolver = lector.misPrestamos.get(seleccionDev - 1);
                             lector.devolverLibro(prestamoADevolver);
                         } else if (seleccionDev != 0) {
-                            
+
                             // clear
                             limpiar.limpiarConsola();
                             System.out.println(" Selección inválida.");

@@ -29,37 +29,10 @@ public class Librero extends Usuario {
                 System.out.println("Error: Ingresa un número válido.");
                 continue;
             }
-            /*
-             * agregar un contador fijo autoincremental para no teclear ids manualmente y
-             * disminuir el error humano
-             */
+
             if (opcion == 1) {
                 limpiar.limpiarConsola();
-                System.out.print("Ingresa el ID (Eje. 001): ");
-                String id = scanner.nextLine();
-                try {
-                    // Validación de ID duplicado
-                    boolean idExiste = false;
-                    for (Libro l : inventario) {
-                        if (l.getIdLibro().equals(id)) {
-                            idExiste = true;
-                            break;
-                        }
-                    }
 
-                    if (idExiste) {
-                        System.out.println("Error: Ya existe un libro registrado con el ID '" + id);
-
-                    }
-
-                } catch (NumberFormatException e) {
-                    System.out.println("Error: " + e);
-
-                } finally {
-                    // clear
-                    limpiar.limpiarConsola();
-                    System.out.println("Error: Ya existe un libro registrado con el ID '" + id);
-                }
                 /*
                  * manda a nombrar el libro pero al ingresar el 003 cierra sesion o cuano se
                  * ingresa una id existente
@@ -71,19 +44,19 @@ public class Librero extends Usuario {
                 System.out.print("Ingresa el Título del libro: ");
 
                 String titulo = scanner.nextLine();
+
                 System.out.print("Ingresa el Autor: ");
 
                 String autor = scanner.nextLine();
 
-                System.out.print("Confirme el ingreso del libro \n 1.- Si \n 2.- NO");
+                System.out.print("Confirme el ingreso del libro\n 1.- Si\n 2.- NO\n");
+
                 try {
                     int tipo = Integer.parseInt(scanner.nextLine());
 
                     if (tipo == 1) {
 
-                        System.out.print("Ingresa el Formato (ej. PDF, EPUB): ");
-                        String formato = scanner.nextLine();
-                        inventario.add(new LibroDigital(id, titulo, autor, formato));
+                        inventario.add(new LibroDigital(titulo, autor, "PDF"));
                         System.out.println(
                                 "¡Libro Digital registrado con éxito por el librero " + librero.getNombre() + "!");
                     } else {
