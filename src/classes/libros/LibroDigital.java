@@ -9,6 +9,7 @@ public class LibroDigital extends Libro {
     }
 
     public String getFormato() {
+        formato = "pdf";
         return formato;
     }
 

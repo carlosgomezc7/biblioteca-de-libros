@@ -112,11 +112,9 @@ public class Lector extends Usuario {
                             Prestamo prestamoADevolver = lector.misPrestamos.get(seleccionDev - 1);
                             lector.devolverLibro(prestamoADevolver);
                         } else if (seleccionDev != 0) {
-
+                            
                             // clear
-                            System.out.print("\033[H\033[2J");
-                            System.out.flush();
-
+                            limpiar.limpiarConsola();
                             System.out.println(" Selección inválida.");
 
                         }

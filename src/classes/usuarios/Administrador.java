@@ -1,5 +1,7 @@
 package src.classes.usuarios;
 
+import src.tools.limpiar;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -7,7 +9,6 @@ import java.util.Scanner;
 import src.classes.libros.*;
 
 public class Administrador extends Usuario {
-    
 
     public Administrador(String nombre, String username, String password) {
         super(nombre, username, password);
@@ -48,13 +49,10 @@ public class Administrador extends Usuario {
             } catch (NumberFormatException e) {
                 System.out.println(" Error: Ingresa un número válido.");
                 continue;
+            } finally {
+                // clear
+                limpiar.limpiarConsola();
             }
-            finally {
-            //clear
-                System.out.print("\033[H\033[2J");
-                System.out.flush();
-        }
-
 
             if (opcion == 1) {
                 System.out.println("\n--- Inventario ---");

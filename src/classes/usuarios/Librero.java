@@ -24,8 +24,7 @@ public class Librero extends Usuario {
 
             try {
                 opcion = Integer.parseInt(scanner.nextLine());
-                System.out.print("\033[H\033[2J");
-                System.out.flush();
+                limpiar.limpiarConsola();
             } catch (NumberFormatException e) {
                 System.out.println("Error: Ingresa un número válido.");
                 continue;
@@ -35,8 +34,7 @@ public class Librero extends Usuario {
              * disminuir el error humano
              */
             if (opcion == 1) {
-                System.out.print("\033[H\033[2J");
-                System.out.flush();
+                limpiar.limpiarConsola();
                 System.out.print("Ingresa el ID (Eje. 001): ");
                 String id = scanner.nextLine();
                 try {
@@ -77,22 +75,17 @@ public class Librero extends Usuario {
 
                 String autor = scanner.nextLine();
 
-                System.out.print("¿El libro es Digital (1) o Físico (2)? ");
+                System.out.print("Confirme el ingreso del libro \n 1.- Si \n 2.- NO");
                 try {
                     int tipo = Integer.parseInt(scanner.nextLine());
 
                     if (tipo == 1) {
+
                         System.out.print("Ingresa el Formato (ej. PDF, EPUB): ");
                         String formato = scanner.nextLine();
                         inventario.add(new LibroDigital(id, titulo, autor, formato));
                         System.out.println(
                                 "¡Libro Digital registrado con éxito por el librero " + librero.getNombre() + "!");
-                    } else if (tipo == 2) {
-                        System.out.print("Ingresa la Ubicación (ej. Estante A): ");
-                        String ubicacion = scanner.nextLine();
-                        inventario.add(new LibroFisico(id, titulo, autor, ubicacion));
-                        System.out.println(
-                                "¡Libro Físico registrado con éxito por el librero " + librero.getNombre() + "!");
                     } else {
                         System.out.println("Opción inválida. No se registró el libro.");
                     }
@@ -104,16 +97,14 @@ public class Librero extends Usuario {
                 }
 
             } else if (opcion == 2) {
-                System.out.print("\033[H\033[2J");
-                System.out.flush();
+                limpiar.limpiarConsola();
                 System.out.println("\n--- Inventario ---");
                 for (Libro l : inventario) {
                     l.mostrarInfo();
                 }
             }
         } while (opcion != 3);
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
+        limpiar.limpiarConsola();
         System.out.println("Cerrando sesión de librero...");
     }
 

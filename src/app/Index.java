@@ -7,13 +7,12 @@ import src.classes.usuarios.*;
 
 public class Index {
     public static void main(String[] args) {
-            // clear
-                System.out.print("\033[H\033[2J");
-                System.out.flush();
+        // clear
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
 
         Scanner scanner = new Scanner(System.in);
         ArrayList<Libro> inventario = new ArrayList<>();
-        inventario.add(new LibroFisico("001", "Cien Años de Soledad", "Gabriel García Márquez", "Pasillo 3 - Estante B"));
         inventario.add(new LibroDigital("002", "El Programador Pragmático", "Andy Hunt", "PDF"));
 
         ArrayList<Usuario> usuariosRegistrados = new ArrayList<>();
