@@ -1,4 +1,5 @@
 package src.classes.usuarios;
+
 //CREAR EN CONSOLA EDITAR NOMBRES DE ROLES Y PERFILES
 //INICIAR SESION O CREAR CUENTA CON UN ARRAYLIST DINAMICO
 //VALIDACION CORREO EN TIEMPO REAL A TRAVES DE LA WEB AL FINAL
@@ -10,6 +11,7 @@ public abstract class Usuario {
     protected String email;
     protected String username;
     private String password;
+    public boolean regresar = false;
 
     // Constructor actualizado con los nuevos campos
     public Usuario(String id, String nombre, String email, String username, String password) {
@@ -44,6 +46,4 @@ public abstract class Usuario {
 
     public abstract void mostrarPanel();
 
-    
-    
 }

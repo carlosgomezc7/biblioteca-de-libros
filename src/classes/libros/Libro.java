@@ -1,17 +1,17 @@
 package src.classes.libros;
 
-// DEJAR 100% DIGITAL Y ELIMINAR LA LIBRERIA FISICA
+// CLASE PADRE
 public class Libro {
     // Variable estática para llevar el control del autoincremento
     private static int contadorId = 1;
 
-    // Se cambia a private
+    // DECLARACION DE ATRIBUTOS
     private String idLibro;
     protected String titulo;
     protected String autor;
     protected boolean disponible;
 
-    // Constructor actualizado (ya no recibe idLibro como parámetro)
+    // Constructor
     public Libro(String titulo, String autor) {
         // Se asigna el valor actual del contador y luego se incrementa
         this.idLibro = String.valueOf(contadorId++);

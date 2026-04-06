@@ -16,7 +16,7 @@ public class Index {
 
         // Mantenemos el inventario 100% digital y sin ID manual
         inventario.add(null); // se agrego el primer add inventario en null para conenzar en 1 el registro asi
-                              // como la impresion
+                              // como la impresion de los libros
         inventario.add(new LibroDigital("Cien Años de Soledad", "Gabriel García Márquez", "EPUB"));
         inventario.add(new LibroDigital("El Programador Pragmático", "Andy Hunt", "PDF"));
 
@@ -68,7 +68,8 @@ public class Index {
 
                 // Redirección dependiendo del Rol (Polimorfismo / InstanceOf)
                 if (usuarioAutenticado instanceof Administrador) {
-                    Administrador.menuAdministrador(scanner, (Administrador) usuarioAutenticado, inventario);
+                    Administrador.menuAdministrador(scanner, (Administrador) usuarioAutenticado, inventario,
+                            usuariosRegistrados);
                 } else if (usuarioAutenticado instanceof Librero) {
                     Librero.menuLibrero(scanner, (Librero) usuarioAutenticado, inventario);
                 } else if (usuarioAutenticado instanceof Lector) {
