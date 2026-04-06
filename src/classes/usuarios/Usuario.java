@@ -5,18 +5,15 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public abstract class Usuario {
-    protected String id;
+    protected String idUsuario;
     protected String nombre;
-    protected String email;
     protected String username;
     private String password;
-    public boolean regresar = false;
 
     // Constructor actualizado con los nuevos campos
-    public Usuario(String id, String nombre, String email, String username, String password) {
-        this.id = id;
+    public Usuario(String idUsuario, String nombre, String email, String username, String password) {
+        this.idUsuario = idUsuario;
         this.nombre = nombre;
-        this.email = email;
         this.username = username;
         this.password = password;
     }
@@ -53,11 +50,6 @@ public abstract class Usuario {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    // METODO PARA SOLICITAR PRESTAMO
-    public void solicitarPrestamo() {
-        System.out.println(this.nombre + " está solicitando un préstamo...");
     }
 
     public abstract void mostrarPanel();
