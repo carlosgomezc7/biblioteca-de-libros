@@ -75,8 +75,52 @@ public class Librero extends Usuario {
                 for (Libro l : inventario) {
                     l.mostrarInfo();
                 }
+            } else if (opcion == 3) {
+                System.out.println("\n--- Editar Libro ---");
+                if (inventario.isEmpty()) {
+                    System.out.println("El inventario está vacío. No hay libros para editar.");
+                } else {
+                    // 1. Mostrar libros con su índice
+                    for (int i = 0; i < inventario.size(); i++) {
+                        Libro l = inventario.get(i);
+                        System.out.println(i + ". " + l.getTitulo() + " (Autor: " + l.getAutor() + ")");
+                    }
+
+                    System.out.print("\nIngrese el número del libro a editar: ");
+                    try {
+                        int index = Integer.parseInt(scanner.nextLine());
+
+                        // 2. Validar que el índice exista
+                        if (index >= 0 && index < inventario.size()) {
+                            Libro libroAEditar = inventario.get(index);
+                            System.out.println("\nEditando: " + libroAEditar.getTitulo());
+                            System.out.println("(Presiona ENTER sin escribir nada para conservar el dato actual)");
+
+                            System.out.print("Nuevo título: ");
+                            String nuevoTitulo = scanner.nextLine();
+                            if (!nuevoTitulo.trim().isEmpty()) {
+                                libroAEditar.setTitulo(nuevoTitulo);
+                            }
+
+                            System.out.print("Nuevo autor: ");
+                            String nuevoAutor = scanner.nextLine();
+                            if (!nuevoAutor.trim().isEmpty()) {
+                                libroAEditar.setAutor(nuevoAutor);
+                            }
+
+                            System.out.println(" Libro actualizado correctamente.");
+                        } else {
+                            System.out.println(" Índice inválido.");
+                        }
+                    } catch (NumberFormatException e) {
+                        System.out.println(" Error: Debes ingresar un número.");
+                    } finally {
+                        limpiar.limpiarConsola();
+                    }
+                }
             }
-        } while (opcion != 3);
+
+        } while (opcion != 4);
         limpiar.limpiarConsola();
         System.out.println("Cerrando sesión de librero...");
     }

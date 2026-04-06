@@ -29,6 +29,18 @@ public class Libro {
         return titulo;
     }
 
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public String getAutor() {
+        return autor;
+    }
+
+    public void setAutor(String autor) {
+        this.autor = autor;
+    }
+
     public String getIdLibro() {
         return idLibro;
     }
@@ -45,4 +57,5 @@ public class Libro {
         System.out.println("ID: " + idLibro + " | Título: " + titulo + " | Autor: " + autor + " | Estado: "
                 + (disponible ? "Disponible" : "Prestado"));
     }
+
 }

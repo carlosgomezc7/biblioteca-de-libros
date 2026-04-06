@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import src.classes.libros.*;
 import src.classes.usuarios.*;
-import src.tools.limpiar; // <-- Se importa la clase limpiar
+import src.tools.limpiar;
+
+//PENDIENTE AGREGAR EL MODULO DE REGISTRAR USUARIOS Y QUE PUEDA ESCOJER SU ROL TAMBIEN
 
 public class Index {
     public static void main(String[] args) {
