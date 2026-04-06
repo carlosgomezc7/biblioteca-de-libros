@@ -42,7 +42,7 @@ public class Administrador extends Usuario {
             System.out.println("\n--- PANEL DE ADMINISTRADOR ---");
             System.out.println("1. Ver inventario total");
             System.out.println("2. Reporte de Estado");
-            System.out.println("3.-Usuarios");
+            System.out.println("3. Usuarios");
             System.out.println("4. Cerrar sesión");
             System.out.print("Elige una opción: ");
 
@@ -78,6 +78,7 @@ public class Administrador extends Usuario {
                     try {
                         subOpcion = Integer.parseInt(scanner.nextLine());
                         limpiar.limpiarConsola();
+
                         if (subOpcion == 1) {
                             System.out.println("\n--- Lista de Usuarios ---");
                             for (int i = 1; i < usuariosRegistrados.size(); i++) {
@@ -85,15 +86,60 @@ public class Administrador extends Usuario {
                                 System.out.println(i + ". " + u.getNombre() + " (" + u.getUsername() + ") - "
                                         + u.getClass().getSimpleName());
                             }
-                        } else if (subOpcion == 3) {
-                            System.out.print("Ingrese el índice del usuario a eliminar: ");
+
+                        } else if (subOpcion == 2) {
+                            // --- INICIO DE LA MODIFICACIÓN (OPCIÓN 2) ---
+                            System.out.println("\n--- Editar Usuario ---");
+
+                            // 1. Imprimir la lista primero para ver a quién editar
+                            for (int i = 1; i < usuariosRegistrados.size(); i++) {
+                                Usuario u = usuariosRegistrados.get(i);
+                                System.out.println(i + ". " + u.getNombre() + " (" + u.getUsername() + ")");
+                            }
+
+                            System.out.print("\nIngrese el número del usuario a editar: ");
                             int index = Integer.parseInt(scanner.nextLine());
+
+                            // 2. Validar que el índice exista en la lista (omitimos el 0 asumiendo que es
+                            // admin)
+                            if (index >= 1 && index < usuariosRegistrados.size()) {
+                                Usuario usuarioAEditar = usuariosRegistrados.get(index);
+                                System.out.println("\nEditando a: " + usuarioAEditar.getNombre());
+                                System.out.println("(Presiona ENTER sin escribir nada para conservar el dato actual)");
+
+                                System.out.print("Nuevo nombre: ");
+                                String nuevoNombre = scanner.nextLine();
+                                if (!nuevoNombre.trim().isEmpty()) {
+                                    usuarioAEditar.setNombre(nuevoNombre);
+                                }
+
+                                System.out.print("Nuevo username: ");
+                                String nuevoUsername = scanner.nextLine();
+                                if (!nuevoUsername.trim().isEmpty()) {
+                                    usuarioAEditar.setUsername(nuevoUsername);
+                                }
+
+                                System.out.print("Nueva contraseña: ");
+                                String nuevaPassword = scanner.nextLine();
+                                if (!nuevaPassword.trim().isEmpty()) {
+                                    usuarioAEditar.setPassword(nuevaPassword);
+                                }
+
+                                System.out.println("✅ Usuario actualizado correctamente.");
+                            } else {
+                                System.out.println("❌ Índice inválido.");
+                            }
+                            // --- FIN DE LA MODIFICACIÓN (OPCIÓN 2) ---
+
+                        } else if (subOpcion == 3) {
                             System.out.println("\n--- Lista de Usuarios ---");
                             for (int i = 1; i < usuariosRegistrados.size(); i++) {
                                 Usuario u = usuariosRegistrados.get(i);
                                 System.out.println(i + ". " + u.getNombre() + " (" + u.getUsername() + ") - "
                                         + u.getClass().getSimpleName());
                             }
+                            System.out.print("Ingrese el índice del usuario a eliminar: ");
+                            int index = Integer.parseInt(scanner.nextLine());
 
                             if (index >= 0 && index < usuariosRegistrados.size()) {
                                 if (usuariosRegistrados.get(index) instanceof Administrador
@@ -101,14 +147,23 @@ public class Administrador extends Usuario {
                                     System.out.println("No puedes eliminarte a ti mismo.");
                                 } else {
                                     usuariosRegistrados.remove(index);
+                                    limpiar.limpiarConsola();
                                     System.out.println("Usuario eliminado.");
+                                    System.out.println("\n--- Confirmacion de usuarios existentes ---");
+                                    for (int i = 1; i < usuariosRegistrados.size(); i++) {
+                                        Usuario u = usuariosRegistrados.get(i);
+                                        System.out.println(i + ". " + u.getNombre() + " (" + u.getUsername() + ") - "
+                                                + u.getClass().getSimpleName());
+
+                                    }
                                 }
                             } else {
                                 System.out.println("Índice inválido.");
                             }
                         }
                     } catch (Exception e) {
-                        System.out.println("Error en la operación de usuarios.");
+                        System.out.println(
+                                "Error en la operación de usuarios. Verifica que el dato ingresado sea correcto.");
                     }
                 }
             }

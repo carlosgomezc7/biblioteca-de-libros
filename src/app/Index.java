@@ -15,8 +15,7 @@ public class Index {
         ArrayList<Libro> inventario = new ArrayList<>();
 
         // Mantenemos el inventario 100% digital y sin ID manual
-        inventario.add(null); // se agrego el primer add inventario en null para conenzar en 1 el registro asi
-                              // como la impresion de los libros
+        inventario.add(new LibroDigital("Manual de sistema", "CCA", "EPUB"));
         inventario.add(new LibroDigital("Cien Años de Soledad", "Gabriel García Márquez", "EPUB"));
         inventario.add(new LibroDigital("El Programador Pragmático", "Andy Hunt", "PDF"));
 

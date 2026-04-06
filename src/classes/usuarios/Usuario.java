@@ -31,12 +31,30 @@ public abstract class Usuario {
         return this.password.equals(inputPassword);
     }
 
+    // SET's PARA EL ACCESO Y LA MODIFICACIÓN DE LOS ATRIBUTOS EN ESTE CASO NOMBRE,
+    // USERNAME Y PASSWORD
     public String getNombre() {
         return nombre;
     }
 
     public String getUsername() {
         return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     // Nuevo método según el diagrama
