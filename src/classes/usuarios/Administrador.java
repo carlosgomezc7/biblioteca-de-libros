@@ -80,12 +80,13 @@ public class Administrador extends Usuario {
 
             } else if (opcion == 2) {
                 int subOpcion = 0;
-                while (subOpcion != 4) {
+                while (subOpcion != 5) {
                     System.out.println("\n--- CONTROL DE USUARIOS ---");
                     System.out.println("1. Mostrar usuarios");
-                    System.out.println("2. Editar un usuario");
-                    System.out.println("3. Eliminar un usuario");
-                    System.out.println("4. Atras");
+                    System.out.println("2. Registrar un usuario"); // NUEVA OPCIÓN
+                    System.out.println("3. Editar un usuario");
+                    System.out.println("4. Eliminar un usuario");
+                    System.out.println("5. Atrás");
                     System.out.print("Elige una opción: ");
 
                     try {
@@ -94,9 +95,12 @@ public class Administrador extends Usuario {
                             // MOSTRAR USUARIOS
                             src.classes.usuarios.Usuario.mostrarUsuarios(usuariosRegistrados);
                         } else if (subOpcion == 2) {
+                            // REGISTRAR USUARIO
+                            src.classes.usuarios.Usuario.registrarUsuario(usuariosRegistrados, scanner);
+                        } else if (subOpcion == 3) {
                             // EDITAR USUARIO
                             src.classes.usuarios.Usuario.editarUsuario(usuariosRegistrados, scanner);
-                        } else if (subOpcion == 3) {
+                        } else if (subOpcion == 4) {
                             // ELIMINAR USUARIO
                             src.classes.usuarios.Usuario.eliminarUsuario(usuariosRegistrados, scanner, admin);
                         }

@@ -141,4 +141,59 @@ public abstract class Usuario {
             System.out.println("Índice inválido.");
         }
     }
+
+    // METODO PARA REGISTRAR USUARIOS (NUEVO)
+    public static void registrarUsuario(ArrayList<Usuario> usuariosRegistrados, Scanner scanner) {
+        System.out.println("\n--- Registrar Nuevo Usuario ---");
+
+        System.out.print("Ingrese el nombre completo: ");
+        String nombre = scanner.nextLine();
+
+        System.out.print("Ingrese el username: ");
+        String username = scanner.nextLine();
+
+        // Validar que el username no exista ya
+        for (Usuario u : usuariosRegistrados) {
+            if (u.getUsername().equals(username)) {
+                limpiar.limpiarConsola();
+                System.out.println(" Error: El username '" + username + "' ya está en uso.");
+                return; // Corta la ejecución si ya existe
+            }
+        }
+
+        System.out.print("Ingrese la contraseña: ");
+        String password = scanner.nextLine();
+
+        System.out.println("\nSeleccione el rol del nuevo usuario:");
+        System.out.println("1. Lector");
+        System.out.println("2. Librero");
+        System.out.println("3. Administrador");
+        System.out.print("Opción de rol: ");
+
+        try {
+            int rol = Integer.parseInt(scanner.nextLine());
+            limpiar.limpiarConsola();
+
+            switch (rol) {
+                case 1:
+                    usuariosRegistrados.add(new Lector(nombre, username, password));
+                    System.out.println(" Lector '" + nombre + "' registrado exitosamente.");
+                    break;
+                case 2:
+                    usuariosRegistrados.add(new Librero(nombre, username, password));
+                    System.out.println(" Librero '" + nombre + "' registrado exitosamente.");
+                    break;
+                case 3:
+                    usuariosRegistrados.add(new Administrador(nombre, username, password));
+                    System.out.println(" Administrador '" + nombre + "' registrado exitosamente.");
+                    break;
+                default:
+                    System.out.println(" Opción de rol inválida. Registro cancelado.");
+            }
+        } catch (NumberFormatException e) {
+            limpiar.limpiarConsola();
+            System.out.println(" Error: Debes ingresar un número válido para el rol.");
+        }
+    }
+
 }
