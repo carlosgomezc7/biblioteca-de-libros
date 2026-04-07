@@ -13,6 +13,8 @@ public class Librero extends Usuario {
         super(nombre, username, password);
     }
 
+    // MENU DEL LIBRERO
+
     public static void menuLibrero(Scanner scanner, Librero librero, ArrayList<Libro> inventario) {
         int opcion = 0;
         do {

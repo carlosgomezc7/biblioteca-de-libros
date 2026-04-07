@@ -68,39 +68,7 @@ public class Lector extends Usuario {
             }
 
             if (opcion == 1) {
-                System.out.println("\n--- Catálogo Disponible ---");
-                // Corrección: Iniciar en 1 y en el index se puso el primer campo del array list
-                // en null
-
-                for (int i = 1; i < inventario.size(); i++) {
-                    if (inventario.get(i).isDisponible()) {
-                        System.out.print(i + ". ");
-                        inventario.get(i).mostrarInfo();
-                    }
-                }
-                System.out.print("Ingresa el número del libro a pedir (o 0 para cancelar): ");
-                try {
-                    int seleccion = Integer.parseInt(scanner.nextLine());
-                    // AJUSTAR DEJAR EN CERO PARA CANCELAR
-                    if (seleccion >= 0 && seleccion < inventario.size() && inventario.get(seleccion).isDisponible()) {
-                        Libro libroSeleccionado = inventario.get(seleccion);
-                        Prestamo nuevoPrestamo = new Prestamo(libroSeleccionado, lector, 7);
-                        lector.agregarPrestamo(nuevoPrestamo);
-
-                        System.out.println(" ¡Libro asignado a tu cuenta!");
-
-                        if (libroSeleccionado instanceof LibroDigital) {
-                            lector.descargar((LibroDigital) libroSeleccionado);
-                        }
-                    } else if (seleccion != -1) {
-                        System.out.println(" Selección inválida o libro no disponible.");
-                    }
-                } catch (NumberFormatException e) {
-                    System.out.println(" Error: Entrada inválida. Debes ingresar un número.");
-                } finally {
-                    // clear
-                    limpiar.limpiarConsola();
-                }
+                src.classes.operaciones.PedirLibro.pedirLibro(scanner, inventario, lector);
             } else if (opcion == 2) {
                 lector.mostrarMisLibros();
             } else if (opcion == 3) {

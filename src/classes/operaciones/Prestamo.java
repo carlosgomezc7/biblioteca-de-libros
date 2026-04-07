@@ -2,8 +2,8 @@ package src.classes.operaciones;
 
 import java.time.LocalDate;
 
-import src.classes.libros.Libro;
-import src.classes.usuarios.Lector;
+import src.classes.usuarios.*;
+import src.classes.libros.*;
 
 public class Prestamo {
     // Encapsulamiento: Protegemos los datos de la transacción

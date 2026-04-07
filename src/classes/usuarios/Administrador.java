@@ -2,7 +2,6 @@ package src.classes.usuarios;
 
 import src.tools.limpiar;
 import src.classes.libros.*;
-
 import java.util.ArrayList;
 
 import java.util.Scanner;
@@ -51,23 +50,26 @@ public class Administrador extends Usuario {
                         limpiar.limpiarConsola();
 
                         if (subOpcion == 1) {
-                            src.classes.libros.LibroDigital.mostrarInventario(inventario);
+                            // MOSTRAR INVENTARIO
+                            src.classes.operaciones.MostrarInventario.mostrarInventario(inventario);
 
                         } else if (subOpcion == 2) {
+                            // AUDITAR INVENTARIO
                             System.out.println("\n--- Reporte de Estado ---");
-                            src.classes.libros.LibroDigital.auditarInventario(inventario);
+                            src.classes.operaciones.AuditarInventario.auditarInventario(inventario);
 
                         } else if (subOpcion == 3) {
                             // REGISTRAR UN LIBRO
-                            src.classes.libros.LibroDigital.registrarLibro(scanner, inventario);
+                            src.classes.operaciones.RegistrarLibro.registrarLibro(scanner, null);
 
                         } else if (subOpcion == 4) {
                             // EDITAR UN LIBRO
-                            src.classes.libros.LibroDigital.editarLibro(scanner, inventario, null, null, null);
+                            src.classes.operaciones.EditarLibro.editarLibro(scanner, inventario, null, null, null);
 
                         } else if (subOpcion == 5) {
                             // ELIMINAR UN LIBRO
-                            src.classes.libros.LibroDigital.eliminarLibro(scanner, inventario);
+                            src.classes.operaciones.EliminarLibro.eliminarLibro(scanner, inventario);
+
                         }
 
                     } catch (NumberFormatException e) {
@@ -89,10 +91,13 @@ public class Administrador extends Usuario {
                     try {
                         subOpcion = Integer.parseInt(scanner.nextLine());
                         if (subOpcion == 1) {
+                            // MOSTRAR USUARIOS
                             src.classes.usuarios.Usuario.mostrarUsuarios(usuariosRegistrados);
                         } else if (subOpcion == 2) {
+                            // EDITAR USUARIO
                             src.classes.usuarios.Usuario.editarUsuario(usuariosRegistrados, scanner);
                         } else if (subOpcion == 3) {
+                            // ELIMINAR USUARIO
                             src.classes.usuarios.Usuario.eliminarUsuario(usuariosRegistrados, scanner, admin);
                         }
                     } catch (Exception e) {

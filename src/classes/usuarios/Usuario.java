@@ -4,6 +4,11 @@ import src.tools.limpiar;
 import java.util.Scanner;
 import java.util.ArrayList;
 
+/* EN ESTA CLASE SE OPTO POR USAR TODOS LOS METODOS EN UNA SOLA CLASE (USUARIOS) A COMPARACION DE LAS 
+OPERACIONES DE LIBROS, CON EL MOTIVO DE MOSTRAR EN ESTE PROYECTO QUE SE PUEDE TRABAJAR CON LOS PACKETES
+DE DIFERENTES FORMAS, ¿QUE ES LO MAS OPTIMO?...
+LA RESPUESTA PARA NOSOTROS ES QUE DEPENDE DEL PROYECTO TENIENDO EN CUENTA LA ESCALABILIDAD*/
+
 public abstract class Usuario {
     protected String idUsuario;
     protected String nombre;
@@ -64,6 +69,7 @@ public abstract class Usuario {
         }
     }
 
+    // METODO PARA EDITAR USUARIOS
     public static void editarUsuario(ArrayList<Usuario> usuariosRegistrados, Scanner scanner) {
 
         System.out.println("\n--- Editar Usuario ---");
@@ -103,6 +109,7 @@ public abstract class Usuario {
             System.out.println("Índice inválido.");
         }
     }
+    // METODO PARA ELIMINAR USUARIOS
 
     public static void eliminarUsuario(ArrayList<Usuario> usuariosRegistrados, Scanner scanner, Administrador admin) {
 
