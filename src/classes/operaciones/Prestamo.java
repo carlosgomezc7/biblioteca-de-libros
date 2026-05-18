@@ -44,6 +44,16 @@ public class Prestamo {
     public Libro getLibro() {
         return libro;
     }
+    // get de lector asociado a este préstamo
+
+    public Lector getLector() {
+        return lector;
+    }
+    // get de estado asociado a este préstamo
+
+    public boolean getEstado() {
+        return estado;
+    }
 
     // Método para procesar la devolución
     public void devolverLibro() {
