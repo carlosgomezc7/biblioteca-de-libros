@@ -9,9 +9,6 @@ El sistema es una aplicación de consola en Java diseñada para administrar el f
 ## 👥 Integrantes del Equipo
 
 * **Carlos Alberto Gomez Cisneros**
-* **Gese Aaron Ontiveros Morales**
-* **Carla Mayreth Valladares Muñoz**
-
 **Profesora:** Arisbeth Bernal Salinas  
 **Materia:** Programación Orientada a Objetos  
 **Fecha de Entrega:** Jueves 19 de febrero, 2026  
